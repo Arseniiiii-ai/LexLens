@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LexLens Beta: contract check against Kazakhstan law</title>
+    <meta
+      name="description"
+      content="LexLens checks a contract against Kazakhstan law and quotes the article behind every warning. English and Kazakh interface. Runs in the browser."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2334261C'/%3E%3Ccircle cx='28' cy='28' r='13' fill='none' stroke='%23E7B689' stroke-width='5'/%3E%3Cpath d='M38 38l12 12' stroke='%23E7B689' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip" href="#checker" data-i18n="skip">Skip to the checker</a>
+
+    <header class="top">
+      <div class="wrap top-row">
+        <a class="brand" href="./" aria-label="LexLens">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#34261C" />
+            <circle cx="28" cy="28" r="13" fill="none" stroke="#E7B689" stroke-width="5" />
+            <path d="M38 38l12 12" stroke="#E7B689" stroke-width="6" stroke-linecap="round" />
+          </svg>
+          <span class="brand-name">LexLens</span>
+          <span class="pill" data-i18n="beta">Beta</span>
+        </a>
+        <div class="lang" role="group" data-i18n-aria="langLabel" aria-label="Interface language">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="kk" aria-pressed="false" lang="kk">ҚАЗ</button>
+        </div>
+      </div>
+      <div class="wrap">
+        <p class="tagline" data-i18n="tagline"></p>
+      </div>
+    </header>
+
+    <main id="checker" class="wrap" tabindex="-1">
+      <section class="card" aria-labelledby="step1">
+        <h2 id="step1" data-i18n="step1"></h2>
+
+        <label class="field-label" for="contract" data-i18n="textLabel"></label>
+        <textarea
+          id="contract"
+          rows="12"
+          spellcheck="false"
+          data-i18n-placeholder="textPlaceholder"
+          aria-describedby="charcount privacy"
+        ></textarea>
+        <p id="charcount" class="muted small" aria-live="off"></p>
+
+        <div class="file-row">
+          <span id="fileLabelText" class="small" data-i18n="fileLabel"></span>
+          <div class="file-pick">
+            <input
+              type="file"
+              id="file"
+              class="visually-hidden"
+              accept=".txt,.docx,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+              aria-labelledby="fileLabelText fileBtnText"
+            />
+            <label for="file" class="btn ghost"><span id="fileBtnText" data-i18n="fileButton"></span></label>
+            <span id="filename" class="muted small" data-i18n="fileNone"></span>
+          </div>
+        </div>
+
+        <div class="samples">
+          <span class="small" data-i18n="samplesLabel"></span>
+          <button type="button" class="chip" data-sample="supply" data-i18n="sampleSupply"></button>
+          <button type="button" class="chip" data-sample="employment" data-i18n="sampleEmployment"></button>
+        </div>
+
+        <div id="error" class="alert error" role="alert" hidden></div>
+
+        <div class="actions">
+          <button type="button" id="checkBtn" class="btn primary" data-i18n="check"></button>
+          <button type="button" id="clearBtn" class="btn ghost" data-i18n="clear"></button>
+        </div>
+        <p id="privacy" class="privacy small" data-i18n="privacy"></p>
+      </section>
+
+      <section id="results" class="card" aria-labelledby="step2" hidden>
+        <h2 id="step2" data-i18n="step2" tabindex="-1"></h2>
+        <p id="resMeta" class="muted small"></p>
+        <p id="resSummary" class="summary" role="status"></p>
+        <div id="warn" class="alert warn" hidden></div>
+        <ol id="flags" class="flags"></ol>
+        <div id="none" class="none" hidden>
+          <h3 data-i18n="noneTitle"></h3>
+          <p data-i18n="noneBody"></p>
+        </div>
+        <div class="save">
+          <h3 data-i18n="step3"></h3>
+          <p class="muted small" data-i18n="reportHint"></p>
+          <button type="button" id="downloadBtn" class="btn primary" data-i18n="download"></button>
+        </div>
+      </section>
+
+      <section class="card coverage">
+        <details>
+          <summary data-i18n="coverage"></summary>
+          <p class="muted small" data-i18n="coverageIntro"></p>
+          <ul id="coverageList" class="coverage-list"></ul>
+        </details>
+      </section>
+
+      <p class="disclaimer" data-i18n="disclaimer"></p>
+    </main>
+
+    <footer class="wrap foot">
+      <p class="small muted" data-i18n="footer"></p>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="rules.js"></script>
+    <script src="samples.js"></script>
+    <script src="docx.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
